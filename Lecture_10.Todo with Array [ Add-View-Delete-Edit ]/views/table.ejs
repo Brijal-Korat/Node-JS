@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo List</title>
 </head>
 
 <body>
@@ -16,6 +16,8 @@
                     <th>SRNO</th>
                     <th>Name</th>
                     <th>Phone</th>
+                    <th>Email</th>
+                    <th>Password</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -25,6 +27,8 @@
                         <td><%= ++i %></td>
                         <td><%= val.name %></td>
                         <td><%= val.phone %></td>
+                        <td><%= val.email %></td>
+                        <td><%= val.password %></td>
                         <td>
                             <a href="/deleteUser?delId=<%= val.id%>">Delete</a> ||
                             <a href="/editUser?editId=<%= val.id%>">Edit</a>

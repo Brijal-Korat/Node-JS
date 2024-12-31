@@ -17,11 +17,13 @@ app.get('/add',(req,res) => {
 })
 
 app.post('/adduser',(req,res) => {
-    const {username, userphone} = req.body;
+    const {username, userphone, useremail, userpassword} = req.body;
     let obj = {
         id: Math.floor(Math.random()*10000),
         name : username,
-        phone : userphone
+        phone : userphone,
+        email: useremail,
+        password: userpassword
     }
     record.push(obj);
     console.log("Successfully added..!");
@@ -44,11 +46,13 @@ app.get('/editUser',(req,res) => {
 })
 
 app.post('/editData',(req,res) => {
-    const {editId, username, userphone} = req.body;
+    const {editId, username, userphone, useremail, userpassword} = req.body;
     let up = record.map((val) => {
         if(val.id == editId){
             val.name = username,
-            val.phone = userphone
+            val.phone = userphone,
+            val.email = useremail,
+            val.password = userpassword
         }
         return val;
     })
