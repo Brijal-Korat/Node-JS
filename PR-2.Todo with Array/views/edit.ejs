@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div align="center">
+        <h1>Add User</h1>
+        <br>
+        <form action="/editData" method="post">
+            <input type="text" name="editId" value="<%= singleData.id %>">
+            <table border="1">
+                <tr>
+                    <td>Name :- </td>
+                    <td><input type="text" name="username" value="<%= singleData.name %>"></td>
+                </tr>
+                <tr>
+                    <td>Phone :- </td>
+                    <td><input type="text" name="userphone" value="<%= singleData.phone %>"></td>
+                </tr>
+                <tr>
+                    <td>Email :- </td>
+                    <td><input type="email" name="useremail" value="<%= singleData.email %>"></td>
+                </tr>
+                <tr>
+                    <td>Password :- </td>
+                    <td><input type="text" name="userpassword" value="<%= singleData.password %>"></td>
+                </tr>
+                <tr>
+                    <td>Task :- </td>
+                    <td><input type="text" name="usertask" value="<%= singleData.task %>"></td>
+                </tr>
+                <tr>
+                    <td>Status :- </td>
+                    <td><input type="text" name="userstatus" value="<%= singleData.status %>"></td>
+                </tr>
+                <tr>
+                    <td>Deadline :- </td>
+                    <td><input type="datetime-local" name="userdeadline" value="<%= singleData.deadline %>"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit"></td>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <a href="/">View</a>
+        
+    </div>
+
+</body>
+
+</html>
