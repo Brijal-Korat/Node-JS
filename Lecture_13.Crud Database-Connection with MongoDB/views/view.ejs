@@ -1,11 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+
+    <div align="center">
+        <h1>View User</h1>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% rcd.map((val)=> { %>
+                    <tr>
+                        <td>
+                            <%= val.id %>
+                        </td>
+                        <td>
+                            <%= val.userName %>
+                        </td>
+                        <td>
+                            <%= val.userEmail %>
+                        </td>
+                        <td>
+                            <%= val.userPassword %>
+                        </td>
+                        <td>
+                            <a href="/deleteUser?delId=<%= val.id %>">Delete</a>
+                            <a href="/editUser?editId=<%= val.id %>">Edit</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+        <a href="/">Add</a>
+    </div>
+
 </body>
+
 </html>
