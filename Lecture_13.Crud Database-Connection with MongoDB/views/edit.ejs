@@ -9,7 +9,8 @@
     <div align="center">
         <h1>Edit User</h1>
 
-        <form method="post" action="/addUser">
+        <form method="post" action="/updateUser">
+            <input type="hidden" name="editId" value="<%= single.id %>">
             <table border="1">
                 <tr>
                     <td>Name :- </td>

@@ -49,8 +49,8 @@ app.get('/deleteUser',(req,res) => {
     let id = req.query.delId;
 
     userModel.findByIdAndDelete(id)
-    .then((data) => {
-        console.log("Dala deleted..!");
+    .then((delData) => {
+        console.log("Data deleted..!");
         return res.redirect("/viewUser");
     }).catch((err) => {
         console.log(err);
@@ -66,6 +66,23 @@ app.get('/editUser',(req,res) => {
         return res.render('edit',{
             single
         })
+    }).catch((err) => {
+        console.log(err);
+        return false;
+    })
+})
+app.post('/updateUser',(req,res) => {
+    const {editId, name, email, password} = req.body;
+
+    userModel.findByIdAndUpadte(editId,{
+        userName : name,
+        userEmail : email,
+        userPassword : password
+    }).then((editData) => {
+        console.log("Data updated..!");
+        console.log(editData);
+        
+        return res.redirect("/viewUser");
     }).catch((err) => {
         console.log(err);
         return false;
