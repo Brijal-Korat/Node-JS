@@ -17,12 +17,15 @@ app.get('/',(req,res) => {
 })
 
 app.post('/addUser',(req,res) => {
-    const {name, email, password} = req.body;
+    const {name, email, password, gender, hobby, city} = req.body;
 
     userModel.create({
         userName : name,
         userEmail : email,
-        userPassword : password
+        userPassword : password,
+        userGender : gender,
+        userHobby : hobby,
+        userCity : city
     }).then((rcd) => {
         console.log(rcd);
         console.log("User Successfully created..!");

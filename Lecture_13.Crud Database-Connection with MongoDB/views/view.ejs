@@ -19,6 +19,9 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Password</th>
+                    <th>Gender</th>
+                    <th>Hobby</th>
+                    <th>City</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -36,6 +39,15 @@
                         </td>
                         <td>
                             <%= val.userPassword %>
+                        </td>
+                        <td>
+                            <%= val.userGender %>
+                        </td>
+                        <td>
+                            <%= val.userHobby %>
+                        </td>
+                        <td>
+                            <%= val.userCity %>
                         </td>
                         <td>
                             <a href="/deleteUser?delId=<%= val.id %>">Delete</a>
