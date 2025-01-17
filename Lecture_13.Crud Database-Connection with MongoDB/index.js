@@ -74,14 +74,12 @@ app.get('/editUser',(req,res) => {
 app.post('/updateUser',(req,res) => {
     const {editId, name, email, password} = req.body;
 
-    userModel.findByIdAndUpadte(editId,{
+    userModel.findByIdAndUpdate(editId,{
         userName : name,
         userEmail : email,
         userPassword : password
     }).then((editData) => {
         console.log("Data updated..!");
-        console.log(editData);
-        
         return res.redirect("/viewUser");
     }).catch((err) => {
         console.log(err);
