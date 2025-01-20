@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <div align="center">
         <h1>Edit User</h1>
@@ -27,7 +29,45 @@
                 <tr>
                     <td>Password :- </td>
                     <td>
-                        <input type="text" name="password" value="<%= single.userPassword %>" placeholder="Enter Your Password">
+                        <input type="text" name="password" value="<%= single.userPassword %>"
+                            placeholder="Enter Your Password">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Gender :- </td>
+                    <td>
+                        <input type="radio" name="gender" value="Male" <%= single.userGender === "Male" ? "checked" : "" %>
+                        > Male
+                        <input type="radio" name="gender" value="Female" <%= single.userGender === "Female" ? "checked"
+                            : "" %> > Female
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Hobby :- </td>
+                    <td>
+                        <input type="checkbox" name="hobby" value="Playing" <%=single.userHobby.includes("Playing")
+                            ? "checked" : "" %>> Playing
+                        <input type="checkbox" name="hobby" value="Singing" <%=single.userHobby.includes("Singing")
+                            ? "checked" : "" %>> Singing
+                        <input type="checkbox" name="hobby" value="Travelling"
+                            <%=single.userHobby.includes("Travelling") ? "checked" : "" %>> Travelling
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>City :- </td>
+                    <td>
+                        <select name="city">
+                            <option value="">--- Select City ---</option>
+                            <% city=["Vesu", "Adajan" , "Amroli" , "Varachha" , "Katargam" , "Dabholi" ] 
+                             city.map((val)=> { %>
+                                <option value="<%= val %>" <%= single.userCity === val ? "selected" : "" %>>
+                                    <%= val %>
+                                </option>
+
+                                <% })%>
+                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -42,4 +82,6 @@
         <a href="/viewUser">View</a>
     </div>
 </body>
+
 </html>
+

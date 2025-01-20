@@ -74,14 +74,18 @@ app.get('/editUser',(req,res) => {
         return false;
     })
 })
+
 app.post('/updateUser',(req,res) => {
-    const {editId, name, email, password} = req.body;
+    const {editId, name, email, password, gender, hobby, city} = req.body;
 
     userModel.findByIdAndUpdate(editId,{
         userName : name,
         userEmail : email,
-        userPassword : password
-    }).then((editData) => {
+        userPassword : password,
+        userGender : gender,
+        userHobby : hobby,
+        userCity : city
+        }).then((editData) => {
         console.log("Data updated..!");
         return res.redirect("/viewUser");
     }).catch((err) => {
