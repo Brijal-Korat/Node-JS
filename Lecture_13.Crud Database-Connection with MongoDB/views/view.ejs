@@ -22,6 +22,7 @@
                     <th>Gender</th>
                     <th>Hobby</th>
                     <th>City</th>
+                    <th>Image</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -48,6 +49,9 @@
                         </td>
                         <td>
                             <%= val.userCity %>
+                        </td>
+                        <td>
+                            <img src="<%= val?.userImage %>" width="100" />
                         </td>
                         <td>
                             <a href="/deleteUser?delId=<%= val.id %>">Delete</a>

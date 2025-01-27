@@ -11,7 +11,7 @@
     <div align="center">
         <h1>Edit User</h1>
 
-        <form method="post" action="/updateUser">
+        <form method="post" action="/updateUser" enctype="multipart/form-data">
             <input type="hidden" name="editId" value="<%= single.id %>">
             <table border="1">
                 <tr>
@@ -68,6 +68,13 @@
 
                                 <% })%>
                         </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>File :- </td>
+                    <td>
+                        <input type="file" name="image">
+                        <img src="<%= single?.userImage %>" width="100" alt="">
                     </td>
                 </tr>
                 <tr>

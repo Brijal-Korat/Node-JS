@@ -11,7 +11,7 @@
     <div align="center">
         <h1>Add User</h1>
 
-        <form method="post" action="/addUser">
+        <form method="post" action="/addUser" enctype="multipart/form-data">
             <table border="1">
                 <tr>
                     <td>Name :- </td>
@@ -58,6 +58,12 @@
                                 </option>
                                 <% })%>
                         </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Image :- </td>
+                    <td>
+                        <input type="file" name="image" id="">
                     </td>
                 </tr>
                 <tr>

@@ -24,6 +24,10 @@ const userSchema = mongoose.Schema({
     userCity : {
         type : String,
         required : true
+    },
+    userImage: {
+        type: String,
+        required: true
     }
 })
 

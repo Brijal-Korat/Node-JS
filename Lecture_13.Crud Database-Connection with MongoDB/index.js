@@ -12,11 +12,32 @@ const userModel = require("./models/UsersModel");
 
 app.use(express.urlencoded());
 
+const multer = require('multer');
+
+//File Upload start
+
+const fs = require('fs');
+
+app.use('/uploads',express.static(path.join(__dirname,'uploads')));
+
+const st = multer.diskStorage({
+    destination : (req,res,cb) => {
+        cb(null,'uploads')
+    },
+    filename : (req,file,cb) => {
+        let unique = Math.floor(Math.random() * 100000);
+        cb(null,`${file.fieldname}-${unique}`)
+    }
+})
+const imageUpload = multer({ storage: st }).single('image');
+
+//File Upload end
+
 app.get('/',(req,res) => {
     return res.render("add");
 })
 
-app.post('/addUser',(req,res) => {
+app.post('/addUser',imageUpload,(req,res) => {
     const {name, email, password, gender, hobby, city} = req.body;
 
     userModel.create({
@@ -25,7 +46,8 @@ app.post('/addUser',(req,res) => {
         userPassword : password,
         userGender : gender,
         userHobby : hobby,
-        userCity : city
+        userCity : city,
+        userImage : req.file?.path
     }).then((rcd) => {
         console.log(rcd);
         console.log("User Successfully created..!");
@@ -77,21 +99,52 @@ app.get('/editUser',(req,res) => {
 
 app.post('/updateUser',(req,res) => {
     const {editId, name, email, password, gender, hobby, city} = req.body;
-
-    userModel.findByIdAndUpdate(editId,{
-        userName : name,
-        userEmail : email,
-        userPassword : password,
-        userGender : gender,
-        userHobby : hobby,
-        userCity : city
-        }).then((editData) => {
-        console.log("Data updated..!");
-        return res.redirect("/viewUser");
-    }).catch((err) => {
-        console.log(err);
-        return false;
-    })
+    if(req.file){
+        userModel.findById(editId)
+            .then((singleRow) => {
+                fs.unlinkSync(singleRow?.image)
+                userModel.findByIdAndUpdate(editId, {
+                    username: name,
+                    useremail: email,
+                    userpassword: password,
+                    userGender : gender,
+                    userHobby : hobby,
+                    userCity : city,
+                    userImage : req.file?.path
+                }).then((user) => {
+                    console.log("user update");
+                    return res.redirect('/viewuser');
+                }).catch((err) => {
+                    console.log(err);
+                    return false;
+                })
+            }).catch((err) => {
+                console.log(err);
+                return false;
+            })
+    }else{
+        userModel.findById(editId)
+            .then((singleRow) => {
+                userModel.findByIdAndUpdate(editId, {
+                    username: name,
+                    useremail: email,
+                    userpassword: password,
+                    userGender : gender,
+                    userHobby : hobby,
+                    userCity : city,
+                    userImage : req.file?.path
+                }).then((user) => {
+                    console.log("user update");
+                    return res.redirect('/viewuser');
+                }).catch((err) => {
+                    console.log(err);
+                    return false;
+                })
+            }).catch((err) => {
+                console.log(err);
+                return false;
+            })
+    }
 })
 
 app.listen(port,(err) => {
