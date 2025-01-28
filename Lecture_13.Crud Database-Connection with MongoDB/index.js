@@ -97,7 +97,7 @@ app.get('/editUser',(req,res) => {
     })
 })
 
-app.post('/updateUser',(req,res) => {
+app.post('/updateUser',imageUpload,(req,res) => {
     const {editId, name, email, password, gender, hobby, city} = req.body;
     if(req.file){
         userModel.findById(editId)
