@@ -16,6 +16,10 @@ app.use(express.urlencoded());
 
 app.use('/',require('./routes/indexRoute'));
 
+app.get('/',(req,res) => {
+    return res.render('login');
+})
+
 app.listen(port,(err) => {
     if(err) {
         console.log(err);
