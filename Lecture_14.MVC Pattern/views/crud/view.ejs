@@ -21,20 +21,24 @@
                     <th>Hobby</th>
                     <th>City</th>
                     <th>File</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 <% allRecord.map((val,index) => { %>
                     <tr>
-                        <td><%= val.id %></td>
-                        <td><%= val.username %></td>
-                        <td><%= val.useremail %></td>
-                        <td><%= val.userpassword %></td>
-                        <td><%= val.usergender %></td>
-                        <td><%= val.userhobby %></td>
-                        <td><%= val.usercity %></td>
+                        <td><%= val?.id %></td>
+                        <td><%= val?.username %></td>
+                        <td><%= val?.useremail %></td>
+                        <td><%= val?.userpassword %></td>
+                        <td><%= val?.usergender %></td>
+                        <td><%= val?.userhobby %></td>
+                        <td><%= val?.usercity %></td>
                         <td>
                             <img src="<%= val.userimage %>" width="100">
+                        </td>
+                        <td>
+                            <a href="/crud/deleteUser?delId=<%= val?.id %>">Delete</a>
                         </td>
                     </tr>
                 <% }) %>

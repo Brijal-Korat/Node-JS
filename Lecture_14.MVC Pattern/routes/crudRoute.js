@@ -1,5 +1,5 @@
 const express = require('express');
-const { addCrud, viewCrud, insertRecord } = require('../controllers/crudController');
+const { addCrud, viewCrud, insertRecord, deleteRecord } = require('../controllers/crudController');
 
 const routes = express.Router();
 
@@ -20,5 +20,7 @@ const st = multer.diskStorage({
 
 const fileUpload = multer({storage : st}).single('fileimage')
 routes.post('/insertrecord', fileUpload, insertRecord);
+
+routes.get('/deleteUser',deleteRecord);
 
 module.exports = routes;
