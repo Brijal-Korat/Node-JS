@@ -12,7 +12,7 @@
         <h1>Edit Page of Crud</h1>
 
         <form action="/crud/updaterecord" enctype="multipart/form-data" method="post">
-            <input type="text" name="editId" value="<%= singleRow.id %>">
+            <input type="hidden" name="editId" value="<%= singleRow.id %>">
             <table border="1">
                 <tr>
                     <td>Name :- </td>

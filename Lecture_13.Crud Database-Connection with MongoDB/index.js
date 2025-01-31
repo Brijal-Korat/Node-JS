@@ -51,7 +51,7 @@ app.post('/addUser',imageUpload,(req,res) => {
     }).then((rcd) => {
         console.log(rcd);
         console.log("User Successfully created..!");
-        return res.redirect("/");
+        return res.redirect("/viewUser");
     }).catch((err) => {
         console.log(err);
         return false;
@@ -72,6 +72,9 @@ app.get('/viewUser',(req,res) => {
 
 app.get('/deleteUser',(req,res) => {
     let id = req.query.delId;
+
+    let single = userModel.findById(id);
+        fs.unlinkSync(single?.userImage);
 
     userModel.findByIdAndDelete(id)
     .then((delData) => {
