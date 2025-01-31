@@ -27,4 +27,3 @@ routes.get('/editUser',editRecord);
 
 routes.post('/updaterecord', fileUpload, updateRecord);
 
-module.exports = routes;
