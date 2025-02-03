@@ -6,7 +6,7 @@ const app = express();
 
 app.set('view engine','ejs');
 
-// Creating Custom Middleware
+// Creating Custom Middleware start
 
 const checkAge = (req,res,next) => {
     let age = req.query.age;
@@ -17,6 +17,7 @@ const checkAge = (req,res,next) => {
     return next();
 }
 
+// Creating Custom Middleware end
 
 app.get('/', (req,res) => {
     return res.render('index');
