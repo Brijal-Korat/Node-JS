@@ -8,6 +8,24 @@ const loginPage = (req,res) => {
     return res.render('login');
 }
 
+const loginUser = async (req,res) => {
+    try{
+        const { email, password } = req.body;
+        const user = await userModel.findOne({ email : email });
+
+        if(!user || user.password != password){
+            console.log(`Email Or Password is incorrect`);
+            return res.redirect('/');
+        }
+
+        res.cookie('auth',user);
+        return res.redirect('/dashboard');
+    }catch(err){
+        console.log(err);
+        return false;
+    }
+}
+
 const registerUser = async (req,res) => {
     try{
         const {name,email,password} = req.body;
@@ -26,6 +44,9 @@ const registerUser = async (req,res) => {
 } 
 
 const dashboardPage = (req,res) => {
+    if(!req.cookies?.auth){
+        return res.redirect('/');
+    }
     return res.render('dashboard');
 }
 
@@ -40,6 +61,7 @@ const aboutPage = (req,res) => {
 module.exports = {
     registerPage,
     loginPage,
+    loginUser,
     registerUser,
     dashboardPage,
     contactPage,
