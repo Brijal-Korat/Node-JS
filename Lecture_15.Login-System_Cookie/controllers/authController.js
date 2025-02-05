@@ -5,6 +5,9 @@ const registerPage = (req,res) => {
 }
 
 const loginPage = (req,res) => {
+    if(req.cookies?.auth){
+        return res.redirect('/dashboard');
+    }
     return res.render('login');
 }
 
@@ -44,9 +47,9 @@ const registerUser = async (req,res) => {
 } 
 
 const dashboardPage = (req,res) => {
-    if(!req.cookies?.auth){
-        return res.redirect('/');
-    }
+    // if(!req.cookies?.auth){
+    //     return res.redirect('/');
+    // }
     return res.render('dashboard');
 }
 
@@ -58,6 +61,11 @@ const aboutPage = (req,res) => {
     return res.render('about');
 }
 
+const logoutUser = (req,res) => {
+    res.clearCookie('auth');
+    return res.redirect('/');
+}
+
 module.exports = {
     registerPage,
     loginPage,
@@ -65,5 +73,6 @@ module.exports = {
     registerUser,
     dashboardPage,
     contactPage,
-    aboutPage
+    aboutPage,
+    logoutUser
 }
