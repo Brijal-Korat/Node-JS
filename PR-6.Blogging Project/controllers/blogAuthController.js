@@ -16,7 +16,7 @@ const loginPage = (req,res) => {
 const loginUser = async (req,res) => {
     try{
         const { email, password } = req.body;
-        const user = await userModel.findOne({ email : email });
+        const user = await userModel.users.findOne({ email : email });
 
         if(!user || user.password != password){
             console.log(`Email Or Password is incorrect`);
@@ -35,7 +35,7 @@ const registerUser = async (req,res) => {
     try{
         const {name,email,password} = req.body;
 
-        await userModel.create({
+        await userModel.users.create({
             name : name,
             email : email,
             password : password
