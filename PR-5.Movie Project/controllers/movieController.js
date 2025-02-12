@@ -85,7 +85,6 @@ const updateData = async (req, res) => {
             console.log("updated");
             return res.redirect('/movie');
         }
-
     } catch (err) {
         console.log(err);
         return false;

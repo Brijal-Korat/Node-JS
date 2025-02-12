@@ -6,7 +6,6 @@ const routes = express.Router();
 const multer = require('multer');
 
 routes.get('/',viewData);
-
 routes.get('/add',addData);
 
 const st = multer.diskStorage({

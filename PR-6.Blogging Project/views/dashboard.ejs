@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background-color: #e4e7e7;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            background-color: #fff;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .nav a:hover{
+            color : #1665D8;
+        }
+
+        .dropdown {
+            cursor: pointer;
+        }
+
+        .right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .login {
+            text-decoration: none;
+            color: black;
+        }
+
+        .button {
+            background-color: #1665D8;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .button:hover{
+            background-color: #0A4C8F;
+        }
+
+        /* header end */
+
+
+        /* .container {
+            max-width: 1200px;
+            margin: auto;
+        } */
+        .breadcrumb {
+            font-size: 14px;
+            color: #666;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        .filters {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .filter-btn:hover{
+            background-color: #1665D8;
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .cards .blog-cards a img{
+            padding: 4px;
+            margin: 15px 5px !important;
+            border: 4px solid #fff;
+            border-radius: 10px;
+            transition: 0.5s;
+        }
+
+        .cards .blog-cards a img:hover{
+            border-color: #174282;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div align="center">
+        <header class="header">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="75" height="30" fill="none">
+                    <g fill="#000" clip-path="url(#Logo_svg__a)">
+                        <path
+                            d="M75 0h-4.142c-1.15 0-2.224.57-2.87 1.52l-5.54 8.174a.372.372 0 0 1-.615 0l-5.54-8.173A3.46 3.46 0 0 0 53.424 0h-4.143l9.87 14.56-9.815 14.477h4.143c1.149 0 2.223-.569 2.868-1.52l5.486-8.093a.372.372 0 0 1 .616 0l5.485 8.093a3.46 3.46 0 0 0 2.87 1.52h4.142L65.131 14.56zM40.758 2.97v26.067h1.98a2.97 2.97 0 0 0 2.97-2.97V0h-1.98a2.97 2.97 0 0 0-2.97 2.97M37.126 0h-1.762a4.15 4.15 0 0 0-4.051 3.233l-3.942 17.328-3.45-16.175c-.638-2.99-3.706-5.006-6.845-4.139-1.999.552-3.481 2.241-3.914 4.27L9.747 20.54 5.813 3.234A4.16 4.16 0 0 0 1.76 0H0l6.604 29.036h2.502a4.81 4.81 0 0 0 4.706-3.808l4.221-19.81a.54.54 0 0 1 .523-.424c.25 0 .471.178.523.423l4.226 19.812a4.81 4.81 0 0 0 4.706 3.807h2.51z">
+                        </path>
+                    </g>
+                    <defs>
+                        <clipPath id="Logo_svg__a">
+                            <path fill="#fff" d="M0 0h75v29.037H0z"></path>
+                        </clipPath>
+                    </defs>
+                </svg>
+            </div>
+            <nav class="nav">
+                <a href="/dashboard">Home </a>
+                <a href="/viewblogpage">Your Blogs </a>
+                <a href="/addblogpage">Add Your Blogs </a>
+            </nav>
+            <div class="right">
+                <a href="/logoutuser" class="button">Logout</a>
+                <!-- <a class="login" href="#">Log In</a> -->
+                <!-- <a class="button" href="#">Get Started</a> -->
+            </div>
+        </header>
+
+        <div style="padding: 20px 0;">
+            <div class="container">
+                <div class="breadcrumb d-flex justify-content-center">Website Templates /</div>
+                <div class="title">Blog Website Templates</div>
+                <div class="filters">
+                    <button class="filter-btn ">All</button>
+                    <button class="filter-btn">Personal Blog</button>
+                    <button class="filter-btn">Food & Travel</button>
+                    <button class="filter-btn">News & Business</button>
+                    <button class="filter-btn">Arts</button>
+                    <button class="filter-btn">Fashion & Beauty</button>
+                    <button class="filter-btn">Sports & Wellness</button>
+                    <button class="filter-btn">Podcast</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="container">
+                <div class="blog-cards d-flex align-items-center justify-content-center my-3">
+                    <div>
+                        <a href="https://www.wix.com/website-template/view/html/2502?originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%2Fhtml%2Fblog&tpClick=view_button&esi=9fa0878d-fedc-40ef-979f-da5234999a00" target="_blank">
+                            <img src="https://images-wixmp-530a50041672c69d335ba4cf.wixmp.com/templates/image/0c018f7c8c9f5adcc54531905fb2bbe2c26295f1624ea36b93708f2833e828c11628607364932.jpg/v1/fill/w_1076%2Ch_606%2Cq_90%2Cusm_0.60_1.00_0.01/0c018f7c8c9f5adcc54531905fb2bbe2c26295f1624ea36b93708f2833e828c11628607364932.webp" width="400">
+                        </a>
+                        
+                        <h6>Personal Blog</h6>
+                    </div>
+                    <div>
+                        <a href="https://www.wix.com/website-template/view/html/1872?originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%2Fhtml%2Fblog&tpClick=view_button&esi=12402d99-f608-4d52-a298-d5b60b716ef6" target="_blank">
+                            <img src="https://images-wixmp-530a50041672c69d335ba4cf.wixmp.com/templates/image/54d15586b8e831a8d6b14b6f5e53c9670e4a6aa53d10a2c5e711508997ac8bfe1628614389821.jpg/v1/fill/w_1076%2Ch_606%2Cq_90%2Cusm_0.60_1.00_0.01/54d15586b8e831a8d6b14b6f5e53c9670e4a6aa53d10a2c5e711508997ac8bfe1628614389821.webp" width="400">
+                        </a>
+                        
+                        <h6>Design Blog & Podcast</h6>
+                    </div>
+                    <div>
+                        <a href="https://www.wix.com/website-template/view/html/1845?originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%2Fhtml%2Fblog&tpClick=view_button&esi=185d525a-6750-4936-9f27-b41917872f3b" target="_blank">
+                            <img src="https://images-wixmp-530a50041672c69d335ba4cf.wixmp.com/templates/image/abefc5ede2c704804aff9eed78d37d100d75ee767f8194a7666ddddee1447f7e1628692719094.jpg/v1/fill/w_1076%2Ch_606%2Cq_90%2Cusm_0.60_1.00_0.01/abefc5ede2c704804aff9eed78d37d100d75ee767f8194a7666ddddee1447f7e1628692719094.webp" width="400">
+                        </a>
+                        
+                        <h6>Travel Blog</h6>
+                    </div>
+                </div>
+                <div class="blog-cards d-flex align-items-center justify-content-center my-3">
+                    <div>
+                        <a href="https://www.wix.com/website-template/view/html/2686?originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%2Fhtml%2Fblog&tpClick=view_button&esi=43eca07c-b2e2-49fa-96f2-916392186808" target="_blank">
+                            <img src="https://images-wixmp-530a50041672c69d335ba4cf.wixmp.com/templates/image/719ae50b59c255985766f97b186a5945ac8969f0b77c7dc43f1c676b1d3f60891628692326613.jpg/v1/fill/w_1076%2Ch_606%2Cq_90%2Cusm_0.60_1.00_0.01/719ae50b59c255985766f97b186a5945ac8969f0b77c7dc43f1c676b1d3f60891628692326613.webp" width="400">
+                        </a>
+                        
+                        <h6>Personal Blog</h6>
+                    </div>
+                    <div>
+                        <a href="https://www.wix.com/website-template/view/html/2004?originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%2Fhtml%2Fblog&tpClick=view_button&esi=85f7dcb2-1d79-43b6-9046-af2ee440614d" target="_blank">
+                            <img src="https://images-wixmp-530a50041672c69d335ba4cf.wixmp.com/templates/image/9c2624bcbbd9012005eae04dbdb0a12bccae7cdb552215f5e7ff8c54345edefc.jpg/v1/fill/w_1076%2Ch_606%2Cq_90%2Cusm_0.60_1.00_0.01/9c2624bcbbd9012005eae04dbdb0a12bccae7cdb552215f5e7ff8c54345edefc.webp" width="400">
+                        </a>
+                        
+                        <h6>Personal Blog</h6>
+                    </div>
+                    <div>
+                        <a href="https://www.wix.com/website-template/view/html/2836?originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%2Fhtml%2Fblog&tpClick=view_button&esi=943fbb9f-7d1b-4b14-a64d-8e58e6674361" target="_blank">
+                            <img src="https://images-wixmp-530a50041672c69d335ba4cf.wixmp.com/templates/image/ada75440311254d771b9bfa28173170e8e377ec13ffdc2050b4e82bfae2f697c1628763949063.jpg/v1/fill/w_1076%2Ch_606%2Cq_90%2Cusm_0.60_1.00_0.01/ada75440311254d771b9bfa28173170e8e377ec13ffdc2050b4e82bfae2f697c1628763949063.webp" width="400">
+                        </a>
+                        
+                        <h6>Book Blog</h6>
+                    </div>
+                </div>
+                <div class="blog-cards d-flex align-items-center justify-content-center my-3">
+                    <div>
+                        <a href="https://www.wix.com/website-template/view/html/3079?originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%2Fhtml%2Fblog&tpClick=view_button&esi=9a3da9d6-05fc-41c8-9677-53d520c1f261" target="_blank">
+                            <img src="https://images-wixmp-530a50041672c69d335ba4cf.wixmp.com/templates/image/93c6ad8d7c53257991206f1b194a301fe4c737faee52b1d297393bfa69bab6c91656926275548.jpg/v1/fill/w_1076%2Ch_606%2Cq_90%2Cusm_0.60_1.00_0.01/93c6ad8d7c53257991206f1b194a301fe4c737faee52b1d297393bfa69bab6c91656926275548.webp" width="400">
+                        </a>
+                       
+                        <h6>Design Blog</h6>
+                    </div>
+                    <div>
+                        <a href="https://www.wix.com/website-template/view/html/2534?originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%2Fhtml%2Fblog&tpClick=view_button&esi=1bad956d-7b61-42a7-bc10-a24604e2d0a3" target="_blank">
+                            <img src="https://images-wixmp-530a50041672c69d335ba4cf.wixmp.com/templates/image/dd8b3aaf70425d896c779f72463733adcd26fc3191832e054ab0098ea2fe8e1b1584443536776.jpg/v1/fill/w_1076%2Ch_606%2Cq_90%2Cusm_0.60_1.00_0.01/dd8b3aaf70425d896c779f72463733adcd26fc3191832e054ab0098ea2fe8e1b1584443536776.webp" width="400">
+                        </a>
+                        
+                        <h6>Personal Blog</h6>
+                    </div>
+                    <div>
+                        <a href="https://www.wix.com/website-template/view/html/2180?originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%2Fhtml%2Fblog&tpClick=view_button&esi=b0422aa3-cffd-4d3c-9cd4-f3610ed405ce" target="_blank">
+                            <img src="https://images-wixmp-530a50041672c69d335ba4cf.wixmp.com/templates/image/5cb11436342dd9c3cf851ebea370dfb33538970bdfaaba07297280466e541e15.jpg/v1/fill/w_1076%2Ch_606%2Cq_90%2Cusm_0.60_1.00_0.01/5cb11436342dd9c3cf851ebea370dfb33538970bdfaaba07297280466e541e15.webp" width="400">
+                        </a>
+                        
+                        <h6>Personal Blog</h6>
+                    </div>
+                </div>
+                <div class="blog-cards d-flex align-items-center justify-content-center my-3">
+                    <div>
+                        <a href="https://www.wix.com/website-template/view/html/2793?originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%2Fhtml%2Fblog&tpClick=view_button&esi=16855806-a81f-4e38-a2df-cb5b97c2da0f" target="_blank">
+                            <img src="https://images-wixmp-530a50041672c69d335ba4cf.wixmp.com/templates/image/75ebcdc3ac3b54e326d81b6739217388424c1b0d775f5d3877c6d8c48add083d1620022031904.jpg/v1/fill/w_1076%2Ch_606%2Cq_90%2Cusm_0.60_1.00_0.01/75ebcdc3ac3b54e326d81b6739217388424c1b0d775f5d3877c6d8c48add083d1620022031904.webp" width="400">
+                        </a>
+                        
+                        <h6>Coaching Blog</h6>
+                    </div>
+                    <div>
+                        <a href="https://www.wix.com/website-template/view/html/2713?originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%2Fhtml%2Fblog&tpClick=view_button&esi=e2f78a66-ee88-48a9-bcec-ee3ab64a97c6" target="_blank">
+                            <img src="https://images-wixmp-530a50041672c69d335ba4cf.wixmp.com/templates/image/c148df50beeb9c879ee98f59bb842feafa596e12eb40f95213f06122afd1da921628613077841.jpg/v1/fill/w_1076%2Ch_606%2Cq_90%2Cusm_0.60_1.00_0.01/c148df50beeb9c879ee98f59bb842feafa596e12eb40f95213f06122afd1da921628613077841.webp" width="400">
+                        </a>
+                        
+                        <h6>Marketing Blog</h6>
+                    </div>
+                    <div>
+                        <a href="https://www.wix.com/website-template/view/html/2714?originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%2Fhtml%2Fblog&tpClick=view_button&esi=cbf224f0-db26-482b-bd68-0c943287f1fb" target="_blank">
+                            <img src="https://images-wixmp-530a50041672c69d335ba4cf.wixmp.com/templates/image/faf9d43f92cccec3a100724075adf69a9001463d6185322edef5d51d130420061628693044599.jpg/v1/fill/w_1076%2Ch_606%2Cq_90%2Cusm_0.60_1.00_0.01/faf9d43f92cccec3a100724075adf69a9001463d6185322edef5d51d130420061628693044599.webp" width="400">
+                        </a>
+                        
+                        <h6>Travel Blog</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>
