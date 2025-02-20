@@ -1,5 +1,7 @@
 const express = require("express");
+
 const port = 9000;
+
 const app = express();
 
 app.set('view engine','ejs');
@@ -10,11 +12,11 @@ app.use('/',express.static(path.join(__dirname, 'public')))
 const db = require('./config/db');
 
 app.use(express.urlencoded());
-const cookieparser = require('cookie-parser');
 
+const cookieparser = require('cookie-parser');
 app.use(cookieparser());
 
-//passpport js start
+//Login system passpportJS start
 
 const passport = require('passport');
 const passportLocal = require('./config/passportLocal');
@@ -34,7 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setUser);
 
-//passpport js end
+//Login system passpportJS end
 
 app.use('/',require('./routes/indexRoute'));
 

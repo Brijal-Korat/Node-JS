@@ -7,15 +7,14 @@ passport.use(new passportLocal({
     usernameField: 'email'
 }, async (email, password, done) => {
     try {
-        console.log(email, password);
-        
         let user = await adminModel.findOne({ email: email });
 
         if (!user || user.password != password) {
-            console.log("Invalid email or password");
+            console.log(`Invalid email or password`);
             return done(null, false);
         }
-        console.log(user)
+        console.log("User Login Successfully..!");
+        console.log(user);
         return done(null, user);
 
     } catch (err) {
@@ -52,4 +51,4 @@ passport.setUser = (req, res, next) => {
     return next();
 };
 
-module.exports = passport;
+module.exports = passport;

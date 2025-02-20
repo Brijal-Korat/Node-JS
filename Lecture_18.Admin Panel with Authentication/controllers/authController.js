@@ -1,6 +1,9 @@
 const adminModel = require('../models/adminsModel');
 
-const loginPage = (req, res) => {
+const loginPage = (req, res) => { 
+    console.log("done");
+    
+
     if(req.locals?.users){
         return res.redirect('/dashboard');
     }
@@ -11,7 +14,7 @@ const registerPage = (req, res) => {
     return res.render('register');
 }
 
-const loginUser = async (req, res) => {
+const loginUser = (req, res) => {
     try{
         return res.redirect('/dashboard');
     }catch(err){
