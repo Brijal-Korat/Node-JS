@@ -42,6 +42,7 @@ const registerUser = async (req, res) => {
 const forgotPassword = async (req,res) => {
     try{
         const { useremail } = req.body;
+        
         let user = await adminModel.findOne({email : useremail});
 
         if(!user){
@@ -62,8 +63,8 @@ const forgotPassword = async (req,res) => {
           var mailOptions = {
             from: 'brijalkorat@gmail.com',
             to: useremail,
-            subject: 'Sending Email using Node.js',
-            text: 'That was easy!'
+            subject: 'Forgot Password',
+            text: `<h1 style='color:green'> Here's Your OTP :- ${otp}</h1>`
           };
           
           transporter.sendMail(mailOptions, function(error, info){
@@ -74,7 +75,9 @@ const forgotPassword = async (req,res) => {
                     otp : otp,
                     email : useremail
                 }
+                res.cookies('userotp',userotp);
                 console.log('Email sent: ' + info.response);
+                return res.redirect('/otp');
             }
           });
 
@@ -84,6 +87,34 @@ const forgotPassword = async (req,res) => {
     }
 }
 
+const userOtp = async (req,res) => {
+    try{
+        const otp = req.body.otp;
+        if(req.cookies.user.otp == otp){
+            return res.redirect('/newpassword');
+        }else{
+            console.log("OTP you entered is not valid..!");
+            return res.redirect()
+        }
+    }catch(err){
+        console.log(err);
+        return false;
+    }
+}
+
+const otpPage = (req,res) => {
+    return res.render('otp');
+} 
+
+const changePassword = async (req,res) => {
+    try{
+
+    }catch(err){
+        console.log(err);
+        return false;
+    }
+}
+ 
 const newPasswordPage = (req,res) => {
     return res.render('newpassword');
 }
@@ -139,6 +170,9 @@ module.exports = {
     loginUser,
     registerUser,
     forgotPassword,
+    changePassword,
     newPasswordPage,
+    otpPage,
+    userOtp,
     logoutUser
 }
