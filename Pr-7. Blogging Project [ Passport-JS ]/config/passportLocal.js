@@ -42,7 +42,7 @@ passport.checkUserLogin = (req,res,next) => {
 
 passport.setUser = (req, res, next) => {
     if(req.isAuthenticated()){
-        res.locals.users = req.users;
+        res.locals.users = req.user;
     }
     return next();
 }

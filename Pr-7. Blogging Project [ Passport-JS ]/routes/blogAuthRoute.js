@@ -32,7 +32,6 @@ routes.post('/addblogdata',fileUpload, addBlogData);
 
 routes.get('/deletedata',deleteBlogData);
 routes.get('/editblogdata',editBlogData);
-
 routes.post('/updateblogdata',fileUpload,updateBlogData)
 
 module.exports = routes;
