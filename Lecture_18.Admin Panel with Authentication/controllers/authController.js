@@ -108,7 +108,20 @@ const otpPage = (req,res) => {
 
 const changePassword = async (req,res) => {
     try{
+        let nPassword = req.body.nPassword;
+        let cPassword = req.body.cPassword;
 
+        if(nPassword == cPassword){
+            let email = req.cookies.user?.email;
+            let user = await adminModel.findOneAndUpdate({email: email},{
+                password : nPassword
+            })
+            res.clearCookie('user');
+            return res.redirect('/');
+        }else{
+            console.log("Password and Confirm Password does not match..!");
+            return res.redirect('/newpassword');
+        }
     }catch(err){
         console.log(err);
         return false;
