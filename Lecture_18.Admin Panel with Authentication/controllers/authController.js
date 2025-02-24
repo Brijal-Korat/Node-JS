@@ -41,46 +41,45 @@ const registerUser = async (req, res) => {
 
 const forgotPassword = async (req,res) => {
     try{
-        const { useremail } = req.body;
-        
-        let user = await adminModel.findOne({email : useremail});
+       const { useremail } = req.body;
+       let user = await adminModel.findOne({email : useremail});
+       if(!user){
+        console.log("Email or Password is not valid..!");
+        return false;
+       }
+       let otp = Math.floor(Math.random() * 100000);
+    //    oyfn qzeg yprh xlge
 
-        if(!user){
-            console.log("Email or Password are not valid..!");
-            return res.redirect('/');
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'brijalkorat@gmail.com',
+          pass: 'oyfn qzeg yprh xlge'
         }
-
-        let otp = Math.floor(Math.random() * 1000000);
-
-        var transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-              user: 'brijalkorat@gmail.com',
-              pass: 'oyfn qzeg yprh xlge'
+      });
+      
+      var mailOptions = {
+        from: 'brijalkorat@gmail.com',
+        to: useremail,
+        subject: 'Forgot Password',
+        html: `<h1 style='color:green'> Here's Your OTP :- ${otp}</h1>`
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+            let userotp = {
+                email: useremail,
+                otp: otp
             }
-          });
-          
-          var mailOptions = {
-            from: 'brijalkorat@gmail.com',
-            to: useremail,
-            subject: 'Forgot Password',
-            html: `<h1 style='color:green'> Here's Your OTP :- ${otp}</h1>`
-          };
-          
-          transporter.sendMail(mailOptions, function(error, info){
-            if (error) {
-              console.log(error);
-            } else {
-                let userotp = {
-                    otp : otp,
-                    email : useremail
-                }
-                res.cookies('userotp',userotp);
-                console.log('Email sent: ' + info.response);
-                return res.redirect('/otp');
-            }
-          });
+            res.cookies('userotp',userotp);
+            console.log('Email sent: ' + info.response);
+            return res.redirect('/otp');
+        }
+      });
 
+        return res.redirect('/otp')
     }catch(err){
         console.log(err);
         return false;
@@ -90,11 +89,11 @@ const forgotPassword = async (req,res) => {
 const userOtp = async (req,res) => {
     try{
         const otp = req.body.otp;
-        if(req.cookies.user.otp == otp){
+        if(req.cookies.userotp == otp){
             return res.redirect('/newpassword');
         }else{
             console.log("OTP you entered is not valid..!");
-            return res.redirect()
+            return res.redirect('/otp')
         }
     }catch(err){
         console.log(err);
