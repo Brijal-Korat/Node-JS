@@ -1,9 +1,16 @@
 const express = require('express');
+const { viewCategoryPage, addCategoryPage, insertCategory, deleteCategory, changeStatus, editCategory, updateCategory } = require('../controllers/CategoryController');
 
 const routes = express.Router();
-const { addSubCategoryPage, viewSubCategoryPage } = require('../controllers/categoryController');
 
-routes.get('/',viewSubCategoryPage);
-routes.get('/addcategorypage',addSubCategoryPage);
+routes.get('/',viewCategoryPage);
+routes.get('/addcategorypage',addCategoryPage);
+routes.post('/insertcategory',insertCategory);
 
-module.exports = routes;    
+routes.get('/deletecategory',deleteCategory);
+routes.get('/changestatus',changeStatus);
+
+routes.get('/editcategory',editCategory);
+routes.post('/updatecategory',updateCategory);
+
+module.exports = routes;

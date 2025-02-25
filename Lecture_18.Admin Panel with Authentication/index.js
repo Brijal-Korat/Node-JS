@@ -38,6 +38,16 @@ app.use(passport.setUser);
 
 //Login system passpportJS end
 
+
+// Flash Message Code Start
+const flash = require('connect-flash');
+app.use(flash());
+app.use('/', (req, res, next) => {
+    res.locals.message = req.flash();
+    return next();
+})
+// Flash Message Code End
+
 app.use('/',require('./routes/indexRoute'));
 
 app.listen(port,(err) => {

@@ -7,7 +7,7 @@
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-12 d-flex no-block align-items-center">
-                    <h4 class="page-title">Add Category</h4>
+                    <h4 class="page-title">Edit Category Details</h4>
                     <div class="ml-auto text-right">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
@@ -29,29 +29,20 @@
             <!-- ============================================================== -->
             <!-- Start Page Content -->
             <!-- ============================================================== -->
-
-            <div class="row">
-                <div class="col-7">
-                    <% if(locals.message?.success) { %>
-                        <div class="alert alert-success" id="success-message">
-                            <%= locals.message?.success %>
-                        </div>
-                        <% } %>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-md-6">
 
                             <div class="card">
-                                <form method="post" action="/category/insertcategory" class="form-horizontal">
+                                <form method="post" action="/category/updatecategory" class="form-horizontal">
                                     <div class="card-body">
+                                        <input type="hidden" value="<%= oneRowRecord?.id %>" name="editId">
                                         <h4 class="card-title">Category</h4>
                                         <div class="form-group row">
                                             <label for="fname"
                                                 class="col-sm-3 text-right control-label col-form-label">Category</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="category"
-                                                    placeholder="Category">
+                                                   value="<%= oneRowRecord?.category %>" placeholder="Category">
                                             </div>
                                         </div>
 

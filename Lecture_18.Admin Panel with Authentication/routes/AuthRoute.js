@@ -25,10 +25,14 @@ routes.post('/changepassword',changePassword);
 routes.get('/logout',logoutUser);
 
 //pages
-routes.get('/dashboard',passport.checkUser, dashboardPage);
-routes.get('/charts',passport.checkUser, chartsPage);
-routes.get('/widgets',passport.checkUser, widgetsPage);
-routes.get('/tables',passport.checkUser, tablesPage);
-routes.get('/grid',passport.checkUser, gridPage);
+// routes.get('/dashboard',passport.checkUser, dashboardPage);
+// routes.get('/charts',passport.checkUser, chartsPage);
+// routes.get('/widgets',passport.checkUser, widgetsPage);
+// routes.get('/grid',passport.checkUser, gridPage);
+
+routes.get('/dashboard', dashboardPage);
+routes.get('/charts', chartsPage);
+routes.get('/widgets', widgetsPage);
+routes.get('/grid', gridPage);
 
 module.exports = routes;

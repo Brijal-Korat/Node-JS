@@ -146,8 +146,6 @@ const gridPage = (req,res) => {
     return res.render('grid');
 }
 
-
-
 const widgetsPage = (req,res) => {
     return res.render('widgets');
 }
