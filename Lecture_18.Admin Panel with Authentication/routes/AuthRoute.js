@@ -1,8 +1,10 @@
 const express = require('express');
 
-const { dashboardPage, loginPage, registerPage, loginUser, registerUser, logoutUser,chartsPage, widgetsPage, tablesPage, gridPage,form_basicPage,form_wizardPage, forgotPassword, newPasswordPage, userOtp, otpPage, changePassword } = require('../controllers/AuthController');
 
 const routes = express.Router();
+
+const { dashboardPage, loginPage, registerPage, loginUser, registerUser, logoutUser,chartsPage, widgetsPage, tablesPage, gridPage, forgotPassword, newPasswordPage, userOtp, otpPage, changePassword } = require('../controllers/AuthController');
+
 
 const passport = require('passport');
 
@@ -28,7 +30,5 @@ routes.get('/charts',passport.checkUser, chartsPage);
 routes.get('/widgets',passport.checkUser, widgetsPage);
 routes.get('/tables',passport.checkUser, tablesPage);
 routes.get('/grid',passport.checkUser, gridPage);
-routes.get('/form-basic',passport.checkUser, form_basicPage);
-routes.get('/form-wizard',passport.checkUser, form_wizardPage);
 
 module.exports = routes;

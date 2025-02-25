@@ -48,7 +48,6 @@ const forgotPassword = async (req,res) => {
         return false;
        }
        let otp = Math.floor(Math.random() * 100000);
-    //    oyfn qzeg yprh xlge
 
     var transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -88,7 +87,7 @@ const forgotPassword = async (req,res) => {
 
 const userOtp = async (req,res) => {
     try{
-        const otp = req.body.otp;
+        const otp = req.body.userotp;
         if(req.cookies.userotp == otp){
             return res.redirect('/newpassword');
         }else{
@@ -115,7 +114,7 @@ const changePassword = async (req,res) => {
             let user = await adminModel.findOneAndUpdate({email: email},{
                 password : nPassword
             })
-            res.clearCookie('user');
+            res.clearCookie('userotp');
             return res.redirect('/');
         }else{
             console.log("Password and Confirm Password does not match..!");
@@ -147,13 +146,7 @@ const gridPage = (req,res) => {
     return res.render('grid');
 }
 
-const form_basicPage = (req,res) => {
-    return res.render('form-basic');
-}
 
-const form_wizardPage = (req,res) => {
-    return res.render('form_wizard');
-}
 
 const widgetsPage = (req,res) => {
     return res.render('widgets');
@@ -175,8 +168,6 @@ module.exports = {
     widgetsPage,
     tablesPage,
     gridPage,
-    form_basicPage,
-    form_wizardPage,
     loginPage,
     registerPage,
     loginUser,
