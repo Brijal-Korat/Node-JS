@@ -63,23 +63,25 @@
                                                     <%= val?.subcategory %>
                                                 </td>
                                                 <td>
-                                                    <a href="/subcategory/deletesubcategory?id=<%= val?.id %>"
-                                                        class="btn btn-danger btn-sm">Delete</a>
+                                                    <a href="/subcategory/deletesubcategory?delId=<%= val?.id %>"
+                                                        class="btn btn-danger btn-sm">Delete&nbsp;&nbsp;<i
+                                                        class="fa fa-trash"></i></a>
 
 
-                                                    <a href="/subcategory/editsubcategory?id=<%= val?.id %>"
-                                                        class="btn btn-primary btn-sm">Edit</a>
+                                                    <a href="/subcategory/editsubcategory?editId=<%= val?.id %>"
+                                                        class="btn btn-warning btn-sm">Edit&nbsp;&nbsp;<i
+                                                        class="fa fa-edit"></i></a>
                                                 </td>
                                                 <td>
 
                                                     <% if(val?.status==="active" ) { %>
-                                                        <a href="/subcategory/changestatus?id=<%= val?.id %>&status=deactive"
-                                                            class="btn btn-success btn-sm">
+                                                        <a href="/subcategory/changestatus?stId=<%= val?.id %>&status=deactive"
+                                                            class="btn btn-success btn-sm text-capitalize">
                                                             <%= val?.status %>
                                                         </a>
                                                         <% } else { %>
-                                                            <a href="/subcategory/changestatus?id=<%= val?.id %>&status=active"
-                                                                class="btn btn-danger btn-sm">
+                                                            <a href="/subcategory/changestatus?stId=<%= val?.id %>&status=active"
+                                                                class="btn btn-danger btn-sm text-capitalize">
                                                                 <%= val?.status %>
                                                             </a>
                                                             <% } %>

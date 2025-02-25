@@ -7,7 +7,7 @@
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-12 d-flex no-block align-items-center">
-                    <h4 class="page-title">Edit Category Details</h4>
+                    <h4 class="page-title">Add Subcategory</h4>
                     <div class="ml-auto text-right">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
@@ -29,20 +29,43 @@
             <!-- ============================================================== -->
             <!-- Start Page Content -->
             <!-- ============================================================== -->
+
+
+
             <div class="row">
                 <div class="col-md-6">
 
+                    <% if(locals?.message?.success) { %>
+                        <div class="alert alert-success" role="alert">
+                            <%= locals?.message?.success %>
+                        </div>
+                        <% } %>
                             <div class="card">
-                                <form method="post" action="/category/updatecategory" class="form-horizontal">
+                                <form class="form-horizontal" method="post" action="/subcategory/updatesubcategory">
+                                    <input type="hidden" name="editId" value="<%= oneRowRecord?.id %>" />
                                     <div class="card-body">
-                                        <input type="hidden" value="<%= oneRowRecord?.id %>" name="editId">
-                                        <h4 class="card-title">Category</h4>
+                                        <h4 class="card-title">Subcategory</h4>
                                         <div class="form-group row">
                                             <label for="fname"
                                                 class="col-sm-3 text-right control-label col-form-label">Category</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="category"
-                                                   value="<%= oneRowRecord?.category %>" placeholder="Category">
+                                                <select name="category" class="form-control">
+                                                    <option>---select category---</option>
+                                                    <% category.map((val, index) => { %>
+                                                        <option value="<%= val?.id %>" <%= (oneRowRecord?.categoryId?.category === val?.category) ? 'selected' : '' %>>
+                                                            <%= val?.category %>
+                                                        </option>
+                                                    <% }) %>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="fname"
+                                                class="col-sm-3 text-right control-label col-form-label">Subcategory</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="subcategory"
+                                                    value="<%= oneRowRecord?.subcategory %>" class="form-control"
+                                                    placeholder="Subcategory Name Here">
                                             </div>
                                         </div>
 
@@ -56,15 +79,20 @@
                             </div>
 
 
-
                 </div>
 
             </div>
-            <!-- editor -->
 
             <!-- ============================================================== -->
             <!-- End PAge Content -->
-            
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Right sidebar -->
+            <!-- ============================================================== -->
+            <!-- .right-sidebar -->
+            <!-- ============================================================== -->
+            <!-- End Right sidebar -->
+            <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
         <!-- End Container fluid  -->
@@ -72,17 +100,6 @@
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
-        <script>
-            // Wait for the page to load, then hide the message after 3 seconds
-            window.onload = function () {
-                setTimeout(function () {
-                    const successMessage = document.getElementById('success-message');
-                    if (successMessage) {
-                        successMessage.style.display = 'none';
-                    }
-                }, 3000);
-            };
-        </script>
         <footer class="footer text-center">
             All Rights Reserved by Matrix-admin. Designed and Developed by <a
                 href="https://wrappixel.com">WrapPixel</a>.

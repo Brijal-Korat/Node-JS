@@ -74,25 +74,19 @@ const updateCategory = async (req,res) => {
     }
 }
 
-const changeStatus = async (req,res) => {
-    try{
+const changeStatus = async (req, res) => {
+    try {
         const { stId, status } = req.query;
 
-        if(status == "deactive"){
-            await categoryModel.findByIdAndUpdate(stId,{
-                staus : status
-            })
-            req.flash("success", "Category Status Successfully Updated..!");
-            return res.redirect('/category');
-        }else{
-            await categoryModel.findByIdAndUpdate(stId,{
-                staus : status
-            })
-            req.flash("success", "Category Status Successfully Updated..!");
-            return res.redirect('/category');
+        if (status === "active") {
+            await categoryModel.findByIdAndUpdate(stId, { status: 'active' })
+        } else {
+            await categoryModel.findByIdAndUpdate(stId, { status: 'deactive' })
         }
         
-    }catch(err){
+        req.flash("success", "Category Status Successfully Changed..!");
+        return res.redirect('/category');
+    } catch (err) {
         console.log(err);
         return false;
     }
