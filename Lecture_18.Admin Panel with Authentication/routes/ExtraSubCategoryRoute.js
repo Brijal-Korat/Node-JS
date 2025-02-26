@@ -1,5 +1,5 @@
 const express = require('express');
-const { addExtraSubCategoryPage, viewExtraSubCategoryPage, insertExtraSubCategory, deleteExtraSubCategory, editExtraSubCategory, ajaxCategoryWiseRecords } = require('../controllers/ExtraSubCategoryController');
+const { addExtraSubCategoryPage, viewExtraSubCategoryPage, insertExtraSubCategory, deleteExtraSubCategory, editExtraSubCategory, ajaxCategoryWiseRecords, changeStatus } = require('../controllers/ExtraSubCategoryController');
 
 const routes = express.Router();
 
@@ -10,5 +10,7 @@ routes.post('/insertextrasubcategory',insertExtraSubCategory);
 routes.get('/deleteextrasubcategory',deleteExtraSubCategory);
 routes.get('/editextrasubcategory',editExtraSubCategory);
 routes.get('/ajaxcategorywiserecords',ajaxCategoryWiseRecords);
+
+routes.get('/changestatus',changeStatus);
 
 module.exports = routes;

@@ -88,11 +88,33 @@ const ajaxCategoryWiseRecords = async (req,res) => {
     }
 }
 
+const changeStatus = async (req,res) => {
+    try{
+        try {
+            const { stId, status } = req.query;
+            if (status === "active") {
+                await extraSubCategoryModel.findByIdAndUpdate(stId, { status: 'active' })
+            } else {
+                await extraSubCategoryModel.findByIdAndUpdate(stId, { status: 'deactive' })
+            }
+            req.flash("success", "ExtraSubCategory Status Successfully Changed..!");
+            return res.redirect('/extrasubcategory');
+        } catch (err) {
+            console.log(err);
+            return false
+        }
+    }catch(err){
+        console.log(err);
+        return false;
+    }
+}
+
 module.exports = {
     addExtraSubCategoryPage,
     viewExtraSubCategoryPage,
     insertExtraSubCategory,
     deleteExtraSubCategory,
     editExtraSubCategory,
-    ajaxCategoryWiseRecords
+    ajaxCategoryWiseRecords,
+    changeStatus
 }
