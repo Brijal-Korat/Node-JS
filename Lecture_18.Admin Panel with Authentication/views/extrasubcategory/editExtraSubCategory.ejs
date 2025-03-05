@@ -1,9 +1,6 @@
 <%- include('../header') %>
 
     <div class="page-wrapper">
-        <!-- ============================================================== -->
-        <!-- Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-12 d-flex no-block align-items-center">
@@ -19,19 +16,7 @@
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Container fluid  -->
-        <!-- ============================================================== -->
         <div class="container-fluid">
-            <!-- ============================================================== -->
-            <!-- Start Page Content -->
-            <!-- ============================================================== -->
-
-
-
             <div class="row">
                 <div class="col-md-6">
 
@@ -41,7 +26,8 @@
                         </div>
                         <% } %>
                             <div class="card">
-                                <form class="form-horizontal" method="post" action="/extrasubcategory/extraupdatesubcategory">
+                                <form class="form-horizontal" method="post"
+                                    action="/extrasubcategory/extraupdatesubcategory">
                                     <input type="hidden" name="editId" value="<%= oneRowRecord?.id %>" />
                                     <div class="card-body">
                                         <h4 class="card-title">Subcategory</h4>
@@ -51,11 +37,13 @@
                                             <div class="col-sm-9">
                                                 <select name="category" class="form-control">
                                                     <option>---select category---</option>
-                                                    <% allCategories.map((val, index) => { %>
-                                                        <option value="<%= val?.id %>" <%= (oneRowRecord?.categoryId?.category === val?.category) ? 'selected' : '' %>>
+                                                    <% allCategories.map((val, index)=> { %>
+                                                        <option value="<%= val?.id %>"
+                                                            <%=(oneRowRecord?.categoryId?.category===val?.category)
+                                                            ? 'selected' : '' %>>
                                                             <%= val?.category %>
                                                         </option>
-                                                    <% }) %>
+                                                        <% }) %>
                                                 </select>
                                             </div>
                                         </div>
@@ -63,16 +51,11 @@
                                             <label for="fname"
                                                 class="col-sm-3 text-right control-label col-form-label">Subcategory</label>
 
-                                                <div class="col-sm-9">
-                                                    <select name="subcategory" id="subcategory" class="form-control">
-                                                        <option>---Select SubCategory---</option>
-                                                        <!-- <% allCategories.map((val, index) => { %>
-                                                            <option value="<%= val?.id %>" <%= (oneRowRecord?.categoryId?.category === val?.category) ? 'selected' : '' %>>
-                                                                <%= val?.category %>
-                                                            </option>
-                                                        <% }) %> -->
-                                                    </select>
-                                                </div>
+                                            <div class="col-sm-9">
+                                                <select name="subcategory" id="subcategory" class="form-control">
+                                                    <option>---Select SubCategory---</option>
+                                                </select>
+                                            </div>
                                         </div>
 
                                         <div class="form-group row">
@@ -99,54 +82,79 @@
 
             </div>
 
-            <!-- ============================================================== -->
-            <!-- End PAge Content -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Right sidebar -->
-            <!-- ============================================================== -->
-            <!-- .right-sidebar -->
-            <!-- ============================================================== -->
-            <!-- End Right sidebar -->
-            <!-- ============================================================== -->
         </div>
-        <!-- ============================================================== -->
-        <!-- End Container fluid  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
         <footer class="footer text-center">
             All Rights Reserved by Matrix-admin. Designed and Developed by <a
                 href="https://wrappixel.com">WrapPixel</a>.
         </footer>
-        <!-- ============================================================== -->
-        <!-- End footer -->
-        <!-- ============================================================== -->
     </div>
 
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript">
+
+
+        const editSubcategory = () => {
+            let categoryId = `<%= oneRowRecord?.categoryId?.id %>`;
+            let subCategoryId = `<%= oneRowRecord?.subcategoryId?.id %>`;
+
+            $.ajax({
+                method: 'GET',
+                url: `/extrasubcategory/ajaxcategorywiserecords?categoryid=${categoryId}`,
+                success: function (res) {
+                    if (res.success) {
+                        let subcategories = res.subcategories; // Fixed key name
+                        let options = `<option>---select subcategory---</option>`;
+                        let category = res.category;
+                        let tbl = "";
+                        tbl += `<option>---select subcategory---</option>`
+                        subcategories.map((val) => {
+                            console.log(val);
+
+                            tbl += `
+                                <option ${val?._id == subCategoryId ? 'selected' : ''} value=${val?._id}>${val?.subcategory}</option>
+                            `
+                        })
+                        // subcategories.forEach((val) => {
+                        //     options += `<option ${val._id == subCategoryId ? 'selected' : ''} value="${val._id}">${val.subcategory}</option>`;
+                        // });
+
+                        document.getElementById('subcategory').innerHTML = options;
+                    }
+                },
+                error: function () {
+                    alert("Failed to load subcategories.");
+                }
+            });
+        };
+
+        // Run editSubcategory on page load (if editing)
+        editSubcategory();
+
         const categoryChange = () => {
             let categoryId = document.getElementById('category').value;
-            $.ajax({
-                type: "GET",
-                url: `/extrasubcategory/ajaxcategorywiserecords?categoryId=${categoryId}`,
-                success: function (res) {
-                    let subCategory = res.subcategory;
-                    let tbl = "";
-                    tbl += `
-                                <option value = "">---Select SubCategory---</option > 
-                            `
-                    subCategory.map((val, i) => {
-                        tbl += `<option value = '${val?._id}' > ${val?.subcategory}</option>`
-                    })
-                    document.getElementById('subcategory').innerHTML = tbl;
-                }
-            })
 
-        }
+            $.ajax({
+                method: 'GET',
+                url: `/extrasubcategory/ajaxcategorywiserecord?categoryid=${categoryId}`,
+                success: function (res) {
+                    if (res.success) {
+                        let options = `<option value="">---select subcategory---</option>`;
+                        res.subcategories.forEach((val) => {
+                            options += `<option value="${val._id}">${val.subcategory}</option>`;
+                        });
+
+                        document.getElementById('subcategory').innerHTML = options;
+                    }
+                },
+                error: function () {
+                    alert("Failed to fetch subcategories.");
+                }
+            });
+        };
+
+
+
     </script>
 
     <%- include('../footer') %>
