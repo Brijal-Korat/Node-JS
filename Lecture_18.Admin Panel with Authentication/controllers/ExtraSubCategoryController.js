@@ -32,7 +32,7 @@ const viewExtraSubCategoryPage = async (req, res) => {
 const insertExtraSubCategory = async (req, res) => {
     try {
         const { editId, category, subcategory, extrasubcategory } = req.body;
-        
+
         if (editId) {
             await extraSubCategoryModel.findByIdAndUpdate(editId, {
                 categoryId: category,
@@ -106,22 +106,17 @@ const ajaxCategoryWiseRecords = async (req, res) => {
 
 const changeStatus = async (req, res) => {
     try {
-        try {
-            const { stId, status } = req.query;
-            if (status === "active") {
-                await extraSubCategoryModel.findByIdAndUpdate(stId, { status: 'active' })
-            } else {
-                await extraSubCategoryModel.findByIdAndUpdate(stId, { status: 'deactive' })
-            }
-            req.flash("success", "ExtraSubCategory Status Successfully Changed..!");
-            return res.redirect('/extrasubcategory');
-        } catch (err) {
-            console.log(err);
-            return false
+        const { stId, status } = req.query;
+        if (status === "active") {
+            await extraSubCategoryModel.findByIdAndUpdate(stId, { status: 'active' })
+        } else {
+            await extraSubCategoryModel.findByIdAndUpdate(stId, { status: 'deactive' })
         }
+        req.flash("success", "ExtraSubCategory Status Successfully Changed..!");
+        return res.redirect('/extrasubcategory');
     } catch (err) {
         console.log(err);
-        return false;
+        return false
     }
 }
 
