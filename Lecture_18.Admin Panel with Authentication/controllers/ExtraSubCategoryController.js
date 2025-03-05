@@ -31,14 +31,25 @@ const viewExtraSubCategoryPage = async (req, res) => {
 
 const insertExtraSubCategory = async (req, res) => {
     try {
-        const { category, subcategory, extrasubcategory } = req.body;
-        await extraSubCategoryModel.create({
-            categoryId: category,
-            subcategoryId: subcategory,
-            extraSubCategory: extrasubcategory
-        })
-        req.flash('success', "ExtraSubCategory Successfully Added..! ( You can view it on ViewExtraSubCategory Page..! )");
-        return res.redirect('/extrasubcategory/addextrasubcategorypage');
+        const { editId, category, subcategory, extrasubcategory } = req.body;
+        
+        if (editId) {
+            await extraSubCategoryModel.findByIdAndUpdate(editId, {
+                categoryId: category,
+                subcategoryId: subcategory,
+                extraSubCategory: extrasubcategory
+            })
+            req.flash('success', 'ExtraSubCategory Successfully Updated..!');
+            return res.redirect('/extrasubcategory');
+        } else {
+            await extraSubCategoryModel.create({
+                categoryId: category,
+                subcategoryId: subcategory,
+                extraSubCategory: extrasubcategory
+            })
+            req.flash('success', "ExtraSubCategory Successfully Added..! ( You can view it on ViewExtraSubCategory Page..! )");
+            return res.redirect('/extrasubcategory/addextrasubcategorypage');
+        }
     } catch (err) {
         console.log(err);
         return false;
@@ -91,37 +102,6 @@ const ajaxCategoryWiseRecords = async (req, res) => {
         return res.status(500).json({ success: false, message: "Something went wrong!" });
     }
 
-    // let categoryid = req.query.categoryid;
-    // try {
-    //     let category = await subCategoryModel.find({ categoryId: categoryid }).populate('categoryId');
-    //     let subcategory = await extraSubCategoryModel.find({ categoryId: categoryid }).populate('categoryId').populate('subcategoryId');
-    //     return res.status(200).send({
-    //         success: true,
-    //         message: "Record Successfully Fetched..!",
-    //         category: category,
-    //         subcategory: subcategory
-    //     })
-    // } catch (err) {
-    //     console.log(err);
-    //     return false;
-    // }
-
-    // try{
-    //     let categoryId = req.query.categoryId;
-    //     console.log(categoryId);
-
-    //     let categoryData = await subCategoryModel.find({ categoryId: categoryId, status: 'active' }).populate('categoryId');
-    //     let subCategoryData = await subCategoryModel.find({ categoryId: categoryId, status: 'active' }).populate('categoryId').populate('subcategoryId');
-    //     return res.status(200).send({
-    //         success: true,
-    //         message: "Record Successfully Fetched..!",
-    //         category: categoryData,
-    //         subcategory: subCategoryData
-    //     })
-    // }catch(err){
-    //     console.log(err);
-    //     return false;
-    // }
 }
 
 const changeStatus = async (req, res) => {
