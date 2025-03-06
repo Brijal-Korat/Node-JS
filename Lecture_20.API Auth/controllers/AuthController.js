@@ -1,11 +1,12 @@
 const usersModel = require('../models/UserModel');
-
 const JWT = require('jsonwebtoken')
-
 
 const registerUser = async (req, res) => {
     try {
         const { name, email, password, city, phone } = req.body;
+        console.log(req.body);
+        
+
         if (!name || !email || !password || !city || !phone) {
             return res.status(401).send({
                 success: false,
@@ -20,6 +21,7 @@ const registerUser = async (req, res) => {
             city : city,
             phone : phone
         })
+        
         return res.status(200).send({
             success: true,
             message: "User Successfully Created..!",
@@ -36,7 +38,7 @@ const registerUser = async (req, res) => {
 const loginUser = async (req,res) => {
     try{
         const { email, password } = req.body;
-        console.log(email, password );
+        console.log(req.body);
 
         if(!email || !password) {
             return res.status(401).send({
@@ -66,8 +68,6 @@ const loginUser = async (req,res) => {
             message: "Token | Login Successfully..!",
             token
         })
-
-
     }catch (err) {
         return res.status(501).send({
             success: false,
