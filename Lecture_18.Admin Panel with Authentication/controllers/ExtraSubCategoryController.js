@@ -84,12 +84,15 @@ const editExtraSubCategory = async (req, res) => {
 
 const ajaxCategoryWiseRecords = async (req, res) => {
 
+    let categoryid = req.query.categoryid;
+    // console.log(categoryid);
+    
     try {
-        let categoryid = req.query.categoryId;
-
         let category = await subCategoryModel.find({ categoryId: categoryid }).populate('categoryId');
         let subcategories = await subCategoryModel.find({ categoryId: categoryid, status: 'active' });
 
+        // console.log(category, subcategories);
+        
         return res.status(200).json({
             success: true,
             message: "Records Successfully Fetched..!",

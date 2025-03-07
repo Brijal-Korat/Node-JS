@@ -86,64 +86,49 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <script type="text/javascript">
-
-
         const editSubcategory = () => {
-            let categoryId = `<%= oneRowRecord?.categoryId?.id %>`;
-            let subCategoryId = `<%= oneRowRecord?.subcategoryId?.id %>`;
-
+            let catid = `<%= oneRowRecord?.categoryId?.id %>`;
+            let subcateid = `<%= oneRowRecord?.subcategoryId?.id %>`;
             $.ajax({
                 method: 'GET',
-                url: `/extrasubcategory/ajaxcategorywiserecords?categoryid=${categoryId}`,
+                url: `/extrasubcategory/ajaxcategorywiserecords?categoryid=${catid}`,
                 success: function (res) {
-                    if (res.success) {
-                        let subcategories = res.subcategories; // Fixed key name
-                        let tbl = `<option>---Select Subcategory---</option>`
-                        subcategories.map((val) => {
-                            console.log(val);
-
-                            tbl += `
-                                <option ${val?._id == subCategoryId ? 'selected' : ''} value=${val?._id}>${val?.subcategory}</option>
-                            `
-                        })
-                        // subcategories.forEach((val) => {
-                        //     options += `<option ${val._id == subCategoryId ? 'selected' : ''} value="${val._id}">${val.subcategory}</option>`;
-                        // });
-
-                        document.getElementById('subcategory').innerHTML = options;
-                    }
+                    console.log(res);
+                    
+                    let subcategory = res.subcategories;
+                    let category = res.category;
+                    let tbl = "";
+                    tbl += `<option>---select subcategory---</option>`;
+                    category.map((val) => {
+                        tbl += `<option ${val?._id == subcateid ? 'selected' : ''} value=${val?._id}>${val?.subcategory}</option>`;
+                    });
+                    document.getElementById('subcategory').innerHTML = tbl;
                 }
             });
         };
-
-        // Run editSubcategory on page load (if editing)
         editSubcategory();
-
+    
         const categoryChange = () => {
-            let categoryId = document.getElementById('category').value;
-
+            let catid = document.getElementById('category').value;
             $.ajax({
                 method: 'GET',
-                url: `/extrasubcategory/ajaxcategorywiserecord?categoryid=${categoryId}`,
+                url: `/extrasubcategory/ajaxcategorywiserecords?categoryid=${catid}`,
                 success: function (res) {
                     if (res.success) {
-                        let options = `<option value="">---select subcategory---</option>`;
-                        res.subcategories.forEach((val) => {
-                            options += `<option value="${val._id}">${val.subcategory}</option>`;
+                        let tbl = "";
+                        tbl += `<option value="">---select subcategory---</option>`;
+                        let category = res.category;
+                        category.map((val) => {
+                            tbl += `<option value=${val?._id}>${val?.subcategory}</option>`;
                         });
-
-                        document.getElementById('subcategory').innerHTML = options;
+                        document.getElementById('subcategory').innerHTML = tbl;
                     }
-                },
-                error: function () {
-                    alert("Failed to fetch subcategories.");
                 }
             });
         };
-
-
-
     </script>
+
 
     <%- include('../footer') %>

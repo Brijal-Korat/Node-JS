@@ -134,7 +134,31 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <script type="text/javascript">
+        const categoryRecord = () => {
+            let catid = document.getElementById('category').value;
+            $.ajax({
+                method : 'GET',
+                url : `/extrasubcategory/ajaxcategorywiserecords?categoryid=${catid}`,
+                success : function (res) {
+                    if (res.success) {
+                        let tbl = "";
+                        tbl += `<option>---select subcategory---</option>`;
+                        let subcategories = res.subcategories;
+                        subcategories.map((val) => {
+                            console.log(val);
+                            
+                            tbl += `<option value=${val?._id}> ${val?.subcategory} </option>`;
+                        });
+                        document.getElementById('subcategory').innerHTML = tbl;
+                    }
+                }
+            });
+        };
+    </script>
+
+    <!-- <script type="text/javascript">
         const categoryRecord = () => {
             let categoryId = document.getElementById('category').value;
             $.ajax({
@@ -145,15 +169,15 @@
 
                     console.log(subcategory);
                     
-                    // let tbl = "";
-                    // tbl += `<option value="">---select subcategory---</option>`
-                    // subcategory.map((cat, index) => {
-                    //     tbl += `<option value='${cat?._id}'>${cat?.subcategory}</option>`
-                    // })
-                    // document.getElementById('subcategory').innerHTML = tbl
+                    let tbl = "";
+                    tbl += `<option value="">---select subcategory---</option>`
+                    subcategory.map((cat, index) => {
+                        tbl += `<option value='${cat?._id}'>${cat?.subcategory}</option>`
+                    })
+                    document.getElementById('subcategory').innerHTML = tbl
 
                 }
             })
         }
-    </script>
+    </script> -->
     <%- include('../footer') %>

@@ -56,7 +56,6 @@ const loginUser = async (req,res) => {
                 message: "Email or Password not valid..!"
             })
         }
-
         res.send(user);
 
         //Creating Token
