@@ -5,7 +5,6 @@ const registerUser = async (req, res) => {
     try {
         const { name, email, password, city, phone } = req.body;
         console.log(req.body);
-        
 
         if (!name || !email || !password || !city || !phone) {
             return res.status(401).send({

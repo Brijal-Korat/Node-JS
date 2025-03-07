@@ -2,7 +2,7 @@ const JWT = require('jsonwebtoken');
 
 const verifyToken = async (req, res, next) => {
     try {
-        // new request create  " alluser"
+        // create new request " alluser"
 
         // authorization -> select bearer token -> token input -> paste token
 
