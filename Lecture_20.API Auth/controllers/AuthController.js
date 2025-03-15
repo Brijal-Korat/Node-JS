@@ -20,6 +20,9 @@ const registerUser = async (req, res) => {
             city : city,
             phone : phone
         })
+
+        console.log(user);
+        
         
         return res.status(200).send({
             success: true,

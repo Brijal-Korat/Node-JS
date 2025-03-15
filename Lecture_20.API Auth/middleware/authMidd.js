@@ -3,7 +3,6 @@ const JWT = require('jsonwebtoken');
 const verifyToken = async (req, res, next) => {
     try {
         // create new request " alluser"
-
         // authorization -> select bearer token -> token input -> paste token
 
         let token = req.heafers.authorization;
@@ -20,7 +19,6 @@ const verifyToken = async (req, res, next) => {
         // for Remove Bearer with one space in token
         let newToken = token.slice(7);
         console.log(newToken);
-
 
         JWT.verify(newToken, "secretKey", (err, decode) => {
             if(err){
