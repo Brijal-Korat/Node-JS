@@ -17,7 +17,6 @@ routes.get('/logoutuser',logoutUser);
 routes.get('/addblogpage', passport.checkUserLogin,addBlogPage);
 routes.get('/viewblogpage', passport.checkUserLogin,viewBlogPage);
 
-
 const st = multer.diskStorage({
     destination : (req, res, cb) => {
         cb(null,'uploads');

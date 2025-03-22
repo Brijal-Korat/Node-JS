@@ -23,7 +23,6 @@ const registerUser = async (req, res) => {
 
         console.log(user);
         
-        
         return res.status(200).send({
             success: true,
             message: "User Successfully Created..!",
@@ -50,7 +49,6 @@ const loginUser = async (req,res) => {
         }
         
         let user = await usersModel.findOne({email: email});
-        res.send(user);
 
         if(!user || user.password != password){
             return res.status(401).send({
@@ -58,7 +56,6 @@ const loginUser = async (req,res) => {
                 message: "Email or Password not valid..!"
             })
         }
-        res.send(user);
 
         //Creating Token
 

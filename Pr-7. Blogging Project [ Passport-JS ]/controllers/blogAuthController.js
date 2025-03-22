@@ -69,10 +69,6 @@ const viewBlogPage = async(req,res) => {
 const addBlogData = async (req,res) => {
     try{
         const { title, description }= req.body;
-        console.log(title);
-        console.log(description);
-        console.log(req.file);
-        
 
         await userModel.blogUser.create({
             title : title,

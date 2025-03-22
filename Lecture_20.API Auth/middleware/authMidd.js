@@ -5,7 +5,7 @@ const verifyToken = async (req, res, next) => {
         // create new request " alluser"
         // authorization -> select bearer token -> token input -> paste token
 
-        let token = req.heafers.authorization;
+        let token = req.headers.authorization;
         res.send(token);
 
         if (!token) {
@@ -18,7 +18,7 @@ const verifyToken = async (req, res, next) => {
 
         // for Remove Bearer with one space in token
         let newToken = token.slice(7);
-        console.log(newToken);
+        // console.log(newToken);
 
         JWT.verify(newToken, "secretKey", (err, decode) => {
             if(err){
@@ -30,7 +30,7 @@ const verifyToken = async (req, res, next) => {
             console.log(decode);
 
             req.user = decode.payload;
-            console.log(req.user);
+            // console.log(req.user);
             return next();
         })
     } catch (err) {

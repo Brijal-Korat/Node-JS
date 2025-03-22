@@ -1,6 +1,6 @@
 const express = require('express');
 
-const port = 8000;
+const port = 9000;
 
 const app = express();
 
@@ -14,20 +14,16 @@ app.use(express.static('public'));
 
 app.use('/uploads',express.static(path.join(__dirname,'uploads')));
 
-// const cookieparser = require('cookie-parser');
-// app.use(cookieparser());
-
 app.use(express.urlencoded());
 
 // Login System start
-
 const passport = require('passport'); 
 const passportLocal = require('./config/passportLocal');
 const session = require('express-session');
 
 app.use(session({
-    name : 'john',
-    secret : 'john123',
+    name : 'brijal',
+    secret : 'briee',
     resave : true,
     saveUninitialized : true,
     cookie : {
@@ -38,8 +34,17 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setUser);
-
 // Login System end
+
+// Flash Message Code Start
+const flash = require('connect-flash');
+app.use(flash());
+app.use('/cart', (req, res, next) => {
+    res.locals.message = req.flash();
+    return next();
+});
+// Flash Message Code End
+
 app.use('/',require('./routes/indexRoute'));
 
 app.listen(port,(err) => {
