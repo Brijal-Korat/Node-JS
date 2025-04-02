@@ -2,7 +2,6 @@ const express = require('express')
 
 const routes = express.Router()
 
-
 const multer = require('multer')
 const { addBlog, adminviewBlog, userwiseviewBlog, admindeleteBlog, updateBlog, userwiseDeleteBlog } = require('../controllers/Blogcontroller')
 const { verifyToken, checkAdmin } = require('../middlewer/Auth')
@@ -18,7 +17,6 @@ const st = multer.diskStorage({
 })
 
 const blogImage = multer({ storage: st }).single('image')
-
 
 routes.post('/addblog', verifyToken, blogImage, addBlog)
 routes.get('/adminviewblog', verifyToken, adminviewBlog)
